@@ -1,10 +1,10 @@
 from models.player import Player
-from vues.player import CreatePlayer
+from vues.player import *
 
 
 def create_player():
     # Récupération des infos du joueur
-    user_entries = CreatePlayer().menu()
+    user_entries = menu()
 
     # Création du joueur
     player = Player(
@@ -14,6 +14,6 @@ def create_player():
         user_entries['id'],
         user_entries['total_score'],
         user_entries['rank'])
-    Player.get_player_info(player)
+    print(player)
 
-create_player()
+

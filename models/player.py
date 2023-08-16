@@ -7,7 +7,6 @@ class Player:
         self.total_score = total_score
         self.tournament_score = 0
         self.rank = rank
-        self.played_with = []
 
-    def get_player_info(self):
+    def __str__(self):
         return f"{self.first_name} {self.name} [{self.tournament_score} pts]"
