@@ -12,7 +12,11 @@ def check_input():
         return check_input()
     return name
 
-
+def check_id():
+    id = input(" rentrez l identifiant national d echec du joueur ")
+    if not re.match(r'[A-Z]{2}[0-9]{5}', id) :
+        check_id()
+    return id
 def check_rank():
     rank = input("rentrez un rank ")
     if not rank.isnumeric():
@@ -32,7 +36,7 @@ def create_player_view():
 
     date_of_birth = check_date_of_birth()
 
-    id = input("""ID du joueur:\n> """)
+    id = check_id()
 
     rank = check_rank()
 
