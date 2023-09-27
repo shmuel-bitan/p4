@@ -26,9 +26,3 @@ class Player:
             "tournaments": self.score
         }
         return json.dumps(player_data, indent=4)
-
-
-
-
-
-

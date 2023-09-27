@@ -1,0 +1,13 @@
+[
+    {
+        "id": 2,
+        "name": "tournoi d echec",
+        "place": "Paris",
+        "date": -2010,
+        "time_control": -2008,
+        "nb_players": 2,
+        "nb_rounds": 4,
+        "desc": "un tournoi",
+        "players": []
+    }
+]

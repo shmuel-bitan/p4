@@ -32,7 +32,7 @@ class TestTournamentCreation(unittest.TestCase):
             name="Test Tournament",
             place="City X",
             date="2023-09-15",
-            time_control="Blitz",
+            time_control="2023-06",
             nb_players=4,
             nb_rounds=2,
             desc="Description of the test tournament"
