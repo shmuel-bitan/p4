@@ -66,7 +66,6 @@ class PlayerManager:
         for player in self.players:
             if player.id == id_player:
                 return player
-                print(player)
         return None
 
     def load_players_from_json(self):
