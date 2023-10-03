@@ -1,33 +1,48 @@
 import random
 import json
 from models.rounds import Match
-from ctrl.playermanager import PlayerManager
+from ctrl.rounds import RoundManager
+from ctrl.playermanager import PlayerManager, load_player_by_id
 from models.tournament import Tournament
+from view.player import check_id
+from view.tournament import create_tournament_view
+
+
+def play_tournament():
+    player_added = 0
+    current_round = 0
+    player_manager = PlayerManager('players.json')
+    current_tournament = TournamentManager(player_manager)
+    tournament_to_add = create_tournament_view()
+    tournament_id = tournament_to_add.get_id()
+    nb_players = tournament_to_add.get_nb_players()
+    tournament_round_number = tournament_to_add.get_nb_round()
+    while player_added < nb_players:
+        print("on ajoute le joueur ", player_added + 1)
+        id_player = check_id()
+        player_to_add = load_player_by_id(id_player)
+        print(player_to_add)
+        player_manager.add_player(player_to_add)
+        player_added += 1
+    print(player_manager.players)
+    tournament_to_add.set_players(player_manager.players)
+    current_tournament.add_tournament(tournament_to_add)
+    while tournament_round_number+1 > current_round:
+        print("on joue le round numero", current_round)
+        current_tournament.play_round(tournament_id, current_round)
+        current_round += 1
 
 
 class TournamentManager:
     def __init__(self, player_manager):
         self.players = player_manager
         self.tournaments = []
-        print(self.players)
-
-    """def create_tournament(self,id, name, place, start_time, end_time, nb_turn, desc):
-        tournament = {
-            "id": id,
-            "name": name,
-            "place": place,
-            "start_time": start_time,
-            "end_time": end_time,
-            "nb_turn": nb_turn,
-            "desc": desc,
-        }
-        self.tournaments.append(tournament)
-    """
 
     def round_to_play(self, tournament_id, nb_rounds):
         round_number = 0
         while round_number < nb_rounds:
             round_number += 1
+            print("on joue le round", round_number)
             if round_number == 1:
                 self.play_round(tournament_id, round_number)
             else:
@@ -53,7 +68,7 @@ class TournamentManager:
             for tournament in self.tournaments
         ]
 
-        with open("tournaments.json", 'w') as file:
+        with open("tournaments.json", 'a') as file:
             json.dump(tournament_data, file, indent=4)
 
     def get_tournaments_by_id(self, id):
@@ -66,22 +81,22 @@ class TournamentManager:
         pairs = []
 
         if randomize:
-            random.shuffle(self.players)  # Randomly shuffle the player list
-        pairs = [(self.players[i], self.players[i + 1]) for i in range(0, len(self.players), 2)]
+            random.shuffle(self.players.players)  # Randomly shuffle the player list
+        pairs = [(self.players.players[i], self.players.players[i + 1]) for i in range(0, len(self.players.players), 2)]
 
         return pairs
 
     def organize_pairs_by_score(self):
-        sorted_players = sorted(self.players, key=lambda player: player.score, reverse=True)
+        sorted_players = sorted(self.players.players, key=lambda player: player['score'], reverse=True)
         pairs = [(sorted_players[i], sorted_players[i + 1]) for i in range(0, len(sorted_players), 2)]
         return pairs
 
     def play_round(self, tournament_id, round_number):
-        if not self.players:
+        if not self.players.players:
             print("No players in the tournament.")
             return []
 
-        if len(self.players) % 2 != 0:
+        if len(self.players.players) % 2 != 0:
             print("Odd number of players. Cannot proceed.")
             return []
 
@@ -95,9 +110,8 @@ class TournamentManager:
         round_results = []
 
         for pair in pairs:
-            match = Match(pair[0], pair[1], tournament_id)
-            match.play_match()
-            match_result = match.get_match_result()
+            match = RoundManager("rounds.json")
+            match_result = match.play_match(pair[0], pair[1], tournament_id, round_number)
             round_results.append(match_result)
             print(round_results)
 
@@ -107,37 +121,4 @@ class TournamentManager:
 
 # Example usage
 if __name__ == "__main__":
-    player_manager = PlayerManager("players.json")
-    player_manager.load_players_from_json()
-
-    # Create a tournament manager
-    tournament_manager = TournamentManager(player_manager)
-
-    # Create a new tournament
-    t1 = Tournament(2, "tournoi d echec", "Paris", 23 - 10 - 2023, 25 - 10 - 2023, 2, "un tournoi")
-    tournament_manager.add_tournament(
-        t1
-    )
-
-    # Save the tournament to a JSON file
-    tournament_manager.save_tournament()
-
-    # Modify the tournament (change the description)
-
-    # Create and add players with scores using PlayerManager
-    player_manager = PlayerManager("players.json")
-    player_manager.load_players_from_json()
-
-    # Create and add players to the tournament
-    player1 = player_manager.get_player_by_id(5)
-    player2 = player_manager.get_player_by_id(6)
-    player3 = player_manager.get_player_by_id(7)
-    player4 = player_manager.get_player_by_id(8)
-    player_manager.add_player(player2)
-    player_manager.add_player(player3)
-    player_manager.add_player(player4)
-    player_manager.add_player(player1)
-
-    tournament_manager = TournamentManager([player1, player2, player3, player4])
-
-    tournament_manager.round_to_play(4)
+    play_tournament()

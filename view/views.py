@@ -1,6 +1,7 @@
-from ctrl.playermanager import new_player, PlayerManager
-from ctrl.rapports import get_all_players_alphabetical, print_all_player_alpha, print_all_tournament
-from ctrl.tournament import TournamentManager
+from ctrl.playermanager import new_player, PlayerManager, load_player_by_id
+from ctrl.rapports import get_all_players_alphabetical, print_all_player_alpha, print_all_tournament, \
+    get_date_time_tournament
+from ctrl.tournament import TournamentManager, play_tournament
 
 player_manager = PlayerManager("players.json")
 tournament_manager = TournamentManager("tournaments.json")
@@ -14,22 +15,23 @@ def see_all_players():
     get_all_players_alphabetical()
 
 
-def create_tournament(self):
-    print("rien")
+def create_tournament():
+    play_tournament()
 
 
-def modify_tournament(self):
-    print("\nModify Tournament")
+def date_tournament():
+    get_date_time_tournament()
 
 
 def menu():
     print("\nMain Menu:")
     print("1. Create Player")
-    print("2. voir tout les joueurs ")
+    print("2. liste de tous les joueurs par ordre alphabétique ")
     print("3. creer un tournoi")
-    print("4. voir un tournoi")
-    print("5.voir tout les tournois")
-    print("5. Exit")
+    print("4. nom et dates d’un tournoi donné")
+    print("5.liste de tous les tournois")
+    print("6. liste des joueurs du tournoi par ordre alphabétique")
+    print("7.liste de tous les tours du tournoi et de tous les matchs du tour")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -39,12 +41,15 @@ def menu():
     elif choice == "3":
         create_tournament()
     elif choice == "4":
-        modify_tournament()
+        date_tournament()
     elif choice == "5":
+        print_all_tournament()
+    elif choice == "7":
+        print_all_tournament()
+    elif choice == "7":
         print_all_tournament()
 
     else:
         print("Invalid choice. Please choose again.")
 
 
-menu()

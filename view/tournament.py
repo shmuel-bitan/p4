@@ -19,19 +19,12 @@ def check_tournament_place():
 
 
 def check_date():
-    date = input("Enter the tournament date (YYYY-MM-DD): ")
-    if not re.match(r'^\d{4}-\d{2}-\d{2}$', date):
-        print("Invalid date format. Please use YYYY-MM-DD.")
+    date = input("Entrez une date au format JJ-MM-AAA: ")
+    if not re.match(r'[0-9]{2}-[0-9]{2}-[0-9]{4}', date):
+        print("Format invalide.")
         return check_date()
     return date
 
-
-def check_time_control():
-    time_control = input("Enter the time control (e.g., Blitz, Rapid): ")
-    if not re.match(r'^[A-Za-z\s]+$', time_control):
-        print("Invalid time control. Please use alphabetic characters and spaces.")
-        return check_time_control()
-    return time_control
 
 
 def check_nb_players():
@@ -66,7 +59,7 @@ def create_tournament_view():
     name = check_tournament_name()
     place = check_tournament_place()
     date = check_date()
-    time_control = check_time_control()
+    time_control = check_date()
     nb_players = check_nb_players()
     nb_rounds = check_nb_rounds()
     desc = check_tournament_description()

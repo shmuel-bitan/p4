@@ -24,6 +24,15 @@ class Tournament:
             else:
                 print(f"Player with ID {player_id} not found.")
 
+    def get_nb_round(self):
+        return self.nb_rounds
+
+    def get_nb_players(self):
+        return self.nb_players
+
+    def get_id(self):
+        return self.id
+
     def get_serialized_tournament(self):
         tournament_data = {
             "id": self.id,

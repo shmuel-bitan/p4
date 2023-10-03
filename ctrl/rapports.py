@@ -13,6 +13,29 @@ def load_players_from_json(filename):
         return []
 
 
+def get_date_time_tournament():
+    tournament_id = input("rentrez l id du tournoi ")
+    try:
+        with open("tournaments.json", 'r') as file:
+            tournaments = json.load(file)
+
+        for tournament in tournaments:
+            if tournament["id"] == tournament_id:
+                return {
+                    "name": tournament["name"],
+                    "date": tournament["date"],
+                    "time_control": tournament["time_control"]
+                }
+            print("le torunoi", tournament["name"],"a commence ", tournament["date"],"et a fini",
+                     tournament["time_control"])
+
+        # Tournament not found
+        return None
+    except FileNotFoundError:
+        print("Tournaments file not found.")
+        return None
+
+
 def load_tournaments_from_json(filename):
     """charger les tournois du json"""
     try:
@@ -81,28 +104,4 @@ def get_players_and_rounds_in_tournament(tournament_name, tournaments_data):
 
 
 # Example usage (You can call these functions as needed in your application)
-if __name__ == "__main__":
-    # Load player and tournament data from JSON files
-    players_data = load_players_from_json("players.json")
-    tournaments_data = load_tournaments_from_json("tournaments.json")
 
-    # Example 1: Get all players ordered by name in alphabetical order
-    print_all_player_alpha()
-
-    # Example 2: Get all players from a tournament ordered by name in
-    # alphabetical order
-    TOURNAMENT_NAME = "Tournament1"  # Replace with the desired tournament name
-    players_in_tournament = get_players_in_tournament_alphabetical(
-        TOURNAMENT_NAME, tournaments_data, players_data)
-    print(f"All players in '{TOURNAMENT_NAME}' ordered by name:")
-    for player in players_in_tournament:
-        print(player)
-
-    # Example 3: Get all tournaments
-    print_all_tournament()
-    # Example 4: Get all players and rounds in a tournament
-
-    players_and_rounds = get_players_and_rounds_in_tournament(
-        TOURNAMENT_NAME, tournaments_data)
-    print(f"All players and rounds in '{TOURNAMENT_NAME}':")
-    print(players_and_rounds)

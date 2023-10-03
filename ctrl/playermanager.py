@@ -3,11 +3,14 @@ from models.player import Player
 from view.player import create_player_view
 
 
-def modify_player_score(player_id, new_score):
+def load_player_by_id(player_id):
     player_manager = PlayerManager("players.json")
-    player = player_manager.get_player_by_id(player_id)
-    player.score = new_score
-    player_manager.players.append(player)
+    all_players = player_manager.load_players_from_json()
+    player_manager.players = []
+    for player in all_players:
+        if player['id'] == player_id:
+            return player
+    return None
 
 
 def new_player():
@@ -45,10 +48,25 @@ class PlayerManager:
         with open(self.filename, 'a') as file:
             json.dump(player_data, file, indent=4)
 
-    def get_player_by_id(self, id):
+    """def modify_player_score(self, player_id, new_score):
+
+        # Find the player by ID and update their score
+        for i, player in enumerate(self.players):
+            if player["id"] == player_id:
+                self.players[i]["score"] = new_score
+"""
+
+    def modify_player_score(self, player_id, new_score):
+
+        player = self.get_player_by_id(player_id)
+        player['score'] = new_score
+        self.players.append(player)
+
+    def get_player_by_id(self, id_player):
         for player in self.players:
-            if player.id == id:
+            if player.id == id_player:
                 return player
+                print(player)
         return None
 
     def load_players_from_json(self):
@@ -64,3 +82,15 @@ class PlayerManager:
         except FileNotFoundError:
             print(f"File '{self.filename}' not found. No players loaded.")
             return []
+
+
+"""player_manager = PlayerManager("players.json")
+player_manager.players = player_manager.load_players_from_json()
+print(player_manager.players)
+modify_player_score('12QWERT',5)
+print(player_manager.get_player_by_id('12QWERT'))
+"""
+player_manager = PlayerManager("players.json")
+player_manager.load_players_from_json()
+print(player_manager.players)
+print(player_manager.get_player_by_id('AZ12345'))
