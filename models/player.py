@@ -2,13 +2,13 @@ import json
 
 
 class Player:
-    def __init__(self, id, name, family_name, date_of_birth, rank):
+    def __init__(self, id, name, family_name, date_of_birth, rank,score=0):
         self.id = id
         self.name = name
         self.family_name = family_name
         self.date_of_birth = date_of_birth
         self.rank = rank
-        self.score = 0  # A list to store the player's tournament scores
+        self.score = score  # A list to store the player's tournament scores
 
     def get_score(self):
         return self.score
