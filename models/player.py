@@ -1,27 +1,28 @@
+import json
+
 
 class Player:
-    def __init__(
-            self, name, first_name, date_of_birth, id, total_score, rank=0):
-        self.name = name
-        self.first_name = first_name
-        self.date_of_birth = date_of_birth
+    def __init__(self, id, name, family_name, date_of_birth, rank,score=0):
         self.id = id
-        self.total_score = total_score
-        self.tournament_score = 0
+        self.name = name
+        self.family_name = family_name
+        self.date_of_birth = date_of_birth
         self.rank = rank
+        self.score = score  # A list to store the player's tournament scores
+
+    def get_score(self):
+        return self.score
 
     def __str__(self):
-        return f"{self.first_name} {self.name} [{self.tournament_score} pts]"
+        return f"{self.name} {self.family_name}, Score: {self.get_score()}"
 
     def get_serialized_player(self):
-        serialized_player = {
-            "name": self.name,
-            "first_name": self.first_name,
-            "date_of_birth": self.date_of_birth,
+        player_data = {
             "id": self.id,
-            "total_score": self.total_score,
-            "tournament_score": self.tournament_score,
+            "name": self.name,
+            "family_name": self.family_name,
+            "date_of_birth": self.date_of_birth,
             "rank": self.rank,
+            "tournaments": self.score
         }
-
-        return serialized_player
+        return json.dumps(player_data, indent=4)
