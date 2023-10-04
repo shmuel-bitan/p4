@@ -26,8 +26,8 @@ def get_date_time_tournament():
                     "date": tournament["date"],
                     "time_control": tournament["time_control"]
                 }
-            print("le torunoi", tournament["name"],"a commence ", tournament["date"],"et a fini",
-                     tournament["time_control"])
+            print("le torunoi", tournament["name"], "a commence ", tournament["date"], "et a fini",
+                  tournament["time_control"])
 
         # Tournament not found
         return None
@@ -92,16 +92,17 @@ def print_all_tournament():
         print(tournament)
 
 
-def get_players_and_rounds_in_tournament(tournament_name, tournaments_data):
+def get_players_and_rounds_in_tournament(tournament_name):
+    tournaments_data = load_tournaments_from_json("tournaments.json")
     """"recup tout les rounds et joueurs dun tournoi"""
     for tournament in tournaments_data:
-        if tournament['name'] == tournament_name:
+        if tournament['id'] == tournament_name:
             return {
-                'players': tournament['players'],
-                'rounds': tournament['rounds']
+                'players': tournament['players']
             }
+        print(tournament['players'])
     return {}
 
 
+get_players_and_rounds_in_tournament(2)
 # Example usage (You can call these functions as needed in your application)
-

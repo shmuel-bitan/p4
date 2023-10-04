@@ -52,3 +52,4 @@ def create_player_view():
     print(f"Joueur {first_name} {name} créé.")
     player = Player(id, name, first_name, date_of_birth, rank)
     return player
+check_id()

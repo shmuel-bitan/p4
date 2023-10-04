@@ -15,7 +15,6 @@ def load_player_by_id(player_id):
 
 def new_player():
     player_manager = PlayerManager("players.json")
-    player_manager.load_players_from_json()
     # Create and add players
     player = create_player_view()
     player_manager.add_player(player)
@@ -42,11 +41,28 @@ class PlayerManager:
                 "rank": player.rank,
                 "score": player.score
             }
-            for player in self.players
-        ]
 
-        with open(self.filename, 'a') as file:
-            json.dump(player_data, file, indent=4)
+        ]
+            for player in self.players
+
+
+        self.save_to_json(player_data)
+
+    def save_to_json(self, data):
+        filename = "players.json"
+        existing_data =0
+        print(data)
+        try:
+            existing_data= self.load_players_from_json()
+            print(existing_data)
+        except FileNotFoundError:
+            existing_data = []
+
+        existing_data.append(data)
+        print(existing_data)
+
+        with open(filename, 'w') as file:
+            json.dump(existing_data, file, indent=4, separators=(',', ': '))
 
     """def modify_player_score(self, player_id, new_score):
 
@@ -66,7 +82,6 @@ class PlayerManager:
         for player in self.players:
             if player.id == id_player:
                 return player
-                print(player)
         return None
 
     def load_players_from_json(self):
@@ -89,8 +104,9 @@ player_manager.players = player_manager.load_players_from_json()
 print(player_manager.players)
 modify_player_score('12QWERT',5)
 print(player_manager.get_player_by_id('12QWERT'))
-"""
+
 player_manager = PlayerManager("players.json")
 player_manager.load_players_from_json()
 print(player_manager.players)
 print(player_manager.get_player_by_id('AZ12345'))
+"""

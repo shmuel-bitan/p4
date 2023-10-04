@@ -27,10 +27,11 @@ def play_tournament():
     print(player_manager.players)
     tournament_to_add.set_players(player_manager.players)
     current_tournament.add_tournament(tournament_to_add)
-    while tournament_round_number+1 > current_round:
-        print("on joue le round numero", current_round)
+    while tournament_round_number > current_round:
+        print("on joue le round numero", current_round+1)
         current_tournament.play_round(tournament_id, current_round)
         current_round += 1
+    current_tournament.save_tournament()
 
 
 class TournamentManager:
@@ -87,7 +88,7 @@ class TournamentManager:
         return pairs
 
     def organize_pairs_by_score(self):
-        sorted_players = sorted(self.players.players, key=lambda player: player['score'], reverse=True)
+        sorted_players = sorted(self.players.players, key=lambda player: player['score'])
         pairs = [(sorted_players[i], sorted_players[i + 1]) for i in range(0, len(sorted_players), 2)]
         return pairs
 
