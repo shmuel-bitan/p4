@@ -1,0 +1,58 @@
+[
+    {
+        "id": "AZ12345",
+        "name": "shmuel",
+        "family_name": "bitan",
+        "date_of_birth": "24-10-2005",
+        "rank": "2000",
+        "score": 0
+    },
+    {
+        "id": "AZ12445",
+        "name": "shmuel",
+        "family_name": "bitan",
+        "date_of_birth": "24-10-2005",
+        "rank": "2000",
+        "score": 0
+    },
+    {
+        "id": "AB12345",
+        "name": "shmuel",
+        "family_name": "bitan",
+        "date_of_birth": "24-10-2005",
+        "rank": "2000",
+        "score": 0
+    },
+    {
+        "id": "AB12346",
+        "name": "shmuel",
+        "family_name": "bitan",
+        "date_of_birth": "24-10-2005",
+        "rank": "2000",
+        "score": 0
+    },
+    {
+        "id": "12QWERT",
+        "name": "Shmuel",
+        "family_name": "lemaire",
+        "date_of_birth": "22-10-2004",
+        "rank": "1233",
+        "score": 0
+    },
+    {
+        "id": "AY77777",
+        "name": "Test",
+        "family_name": "TEst",
+        "date_of_birth": "22-10-2005",
+        "rank": "4",
+        "score": 0
+    },
+    {
+        "id": "YI77665",
+        "name": "RR",
+        "family_name": "R",
+        "date_of_birth": "44-44-4444",
+        "rank": "7",
+        "score": 0
+    }
+]

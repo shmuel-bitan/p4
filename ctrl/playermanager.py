@@ -45,7 +45,7 @@ class PlayerManager:
             for player in self.players
         ]
 
-        with open(self.filename, 'a') as file:
+        with open(self.filename, 'w') as file:
             json.dump(player_data, file, indent=4)
 
     """def modify_player_score(self, player_id, new_score):
@@ -67,7 +67,6 @@ class PlayerManager:
             if player.id == id_player:
                 return player
         return None
-
     def load_players_from_json(self):
         try:
             with open(self.filename, 'r') as file:
@@ -89,7 +88,10 @@ print(player_manager.players)
 modify_player_score('12QWERT',5)
 print(player_manager.get_player_by_id('12QWERT'))
 """
+"""
 player_manager = PlayerManager("players.json")
 player_manager.load_players_from_json()
 print(player_manager.players)
 print(player_manager.get_player_by_id('AZ12345'))
+new_player()
+"""

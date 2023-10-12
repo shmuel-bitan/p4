@@ -10,7 +10,7 @@ from view.tournament import create_tournament_view
 
 def play_tournament():
     player_added = 0
-    current_round = 0
+    current_round = 1
     player_manager = PlayerManager('players.json')
     current_tournament = TournamentManager(player_manager)
     tournament_to_add = create_tournament_view()
@@ -68,7 +68,7 @@ class TournamentManager:
             for tournament in self.tournaments
         ]
 
-        with open("tournaments.json", 'a') as file:
+        with open("tournaments.json", 'w') as file:
             json.dump(tournament_data, file, indent=4)
 
     def get_tournaments_by_id(self, id):

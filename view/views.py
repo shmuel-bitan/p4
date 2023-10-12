@@ -44,7 +44,7 @@ def menu():
         date_tournament()
     elif choice == "5":
         print_all_tournament()
-    elif choice == "7":
+    elif choice == "6":
         print_all_tournament()
     elif choice == "7":
         print_all_tournament()

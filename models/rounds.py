@@ -18,13 +18,13 @@ class Match:
             player1['score'] += 1
 
         elif outcome == "2":
-            player2.score += 1
+            player2['score'] += 1
 
         elif outcome == "0":
-            player1.score += 0.5
-            player2.score += 0.5
+            player1['score'] += 0.5
+            player2['score'] += 0.5
 
-            self.match_end = time.strftime("%Y-%m-%d %H:%M:%S")
+        self.match_end = time.strftime("%Y-%m-%d %H:%M:%S")
 
         match_result = {
             "Tournament_Id": tournament_id,

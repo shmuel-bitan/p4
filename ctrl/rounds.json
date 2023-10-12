@@ -1,12 +1,111 @@
 [
     {
-        "player1": "Player1",
-        "player2": "Player2",
-        "result": {
-            "player1_score": 1,
-            "player2_score": 0
-        },
-        "tournament_id": 1,
-        "round_number": 1
+        "Tournament_Id": "436",
+        "Player1 ID": "AZ12345",
+        "Player1 Score": 1,
+        "Player2 ID": "AZ12445",
+        "Player2 Score": 0,
+        "Round_Number": 0,
+        "start_time": "2023-10-11 14:11:04",
+        "end_time": null
+    }
+][
+    {
+        "Tournament_Id": "436",
+        "Player1 ID": "AB12345",
+        "Player1 Score": 1,
+        "Player2 ID": "AB12346",
+        "Player2 Score": 0,
+        "Round_Number": 0,
+        "start_time": "2023-10-11 14:11:07",
+        "end_time": null
+    }
+][
+    {
+        "Tournament_Id": "436",
+        "Player1 ID": "AZ12345",
+        "Player1 Score": 2,
+        "Player2 ID": "AZ12445",
+        "Player2 Score": 0,
+        "Round_Number": 1,
+        "start_time": "2023-10-11 14:11:10",
+        "end_time": null
+    }
+][
+    {
+        "Tournament_Id": "436",
+        "Player1 ID": "AB12346",
+        "Player1 Score": 1,
+        "Player2 ID": "AB12345",
+        "Player2 Score": 1,
+        "Round_Number": 1,
+        "start_time": "2023-10-11 14:11:14",
+        "end_time": null
+    }
+][
+    {
+        "Tournament_Id": "436",
+        "Player1 ID": "AZ12345",
+        "Player1 Score": 3,
+        "Player2 ID": "AB12346",
+        "Player2 Score": 1,
+        "Round_Number": 2,
+        "start_time": "2023-10-11 14:11:15",
+        "end_time": null
+    }
+][
+    {
+        "Tournament_Id": "436",
+        "Player1 ID": "AB12345",
+        "Player1 Score": 2,
+        "Player2 ID": "AZ12445",
+        "Player2 Score": 0,
+        "Round_Number": 2,
+        "start_time": "2023-10-11 14:11:17",
+        "end_time": null
+    }
+][
+    {
+        "Tournament_Id": "4",
+        "Player1 ID": "AZ12445",
+        "Player1 Score": 1,
+        "Player2 ID": "AB12345",
+        "Player2 Score": 0,
+        "Round_Number": 0,
+        "start_time": "2023-10-11 14:39:32",
+        "end_time": "2023-10-11 14:39:35"
+    }
+][
+    {
+        "Tournament_Id": "4",
+        "Player1 ID": "AB12345",
+        "Player1 Score": 1,
+        "Player2 ID": "AZ12445",
+        "Player2 Score": 1,
+        "Round_Number": 1,
+        "start_time": "2023-10-11 14:39:35",
+        "end_time": "2023-10-11 14:39:36"
+    }
+][
+    {
+        "Tournament_Id": "4",
+        "Player1 ID": "AB12345",
+        "Player1 Score": 2,
+        "Player2 ID": "AZ12445",
+        "Player2 Score": 1,
+        "Round_Number": 2,
+        "start_time": "2023-10-11 14:39:36",
+        "end_time": "2023-10-11 14:39:37"
+    }
+][
+    {
+        "Tournament_Id": "42",
+        "Player1 ID": "AB12346",
+        "Player1 Score": 1,
+        "Player2 ID": "AZ12445",
+        "Player2 Score": 0,
+        "Round_Number": 1,
+        "start_time": "2023-10-12 15:00:21",
+        "end_time": "2023-10-12 15:00:24"
     }
 ]
