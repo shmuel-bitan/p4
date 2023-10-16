@@ -1,4 +1,3 @@
-
 from view.views import menu
 
 
