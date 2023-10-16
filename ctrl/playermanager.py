@@ -78,16 +78,3 @@ class PlayerManager:
         except FileNotFoundError:
             print(f"File '{self.filename}' not found. No players loaded.")
             return []
-
-
-"""player_manager = PlayerManager("players.json")
-player_manager.players = player_manager.load_players_from_json()
-print(player_manager.players)
-modify_player_score('12QWERT',5)
-print(player_manager.get_player_by_id('12QWERT'))
-
-player_manager = PlayerManager("players.json")
-player_manager.load_players_from_json()
-print(player_manager.players)
-print(player_manager.get_player_by_id('AZ12345'))
-"""
