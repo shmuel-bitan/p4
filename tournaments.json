@@ -10,35 +10,35 @@
         "players": [
             {
                 "id": "AZ12345",
-                "name": "sam",
-                "family_name": "test",
-                "date_of_birth": "24-10-2005",
-                "rank": "2000",
-                "score": 3
+        "name": "joueur",
+        "family_name": "test",
+        "date_of_birth": "26-03-2000",
+        "rank": "2000",
+        "score": 0
             },
             {
                 "id": "RT44444",
-                "name": "ee",
-                "family_name": "ee",
-                "date_of_birth": "22-22-2222",
-                "rank": "502",
-                "score": 1
+        "name": "joueur",
+        "family_name": "deux",
+        "date_of_birth": "22-22-2222",
+        "rank": "502",
+        "score": 0
             },
             {
-                "id": "QR45632",
-                "name": "sam",
-                "family_name": "smith",
-                "date_of_birth": "20-10-2000",
-                "rank": "579",
-                "score": 2
+                 "id": "QR45632",
+        "name": "sam",
+        "family_name": "smith",
+        "date_of_birth": "01-01-2000",
+        "rank": "579",
+        "score": 0
             },
             {
                 "id": "TY66666",
-                "name": "thom",
-                "family_name": "dom",
-                "date_of_birth": "21-10-2003",
-                "rank": "432",
-                "score": 0
+        "name": "jane",
+        "family_name": "doe",
+        "date_of_birth": "21-10-2003",
+        "rank": "432",
+        "score": 0
             }
         ],
         "nb_rounds": 4
@@ -54,35 +54,35 @@
         "players": [
             {
                 "id": "RT44444",
-                "name": "ee",
-                "family_name": "ee",
-                "date_of_birth": "22-22-2222",
-                "rank": "502",
-                "score": 4
+        "name": "joueur",
+        "family_name": "deux",
+        "date_of_birth": "22-22-2222",
+        "rank": "502",
+        "score": 0
             },
             {
                 "id": "TY66666",
-                "name": "thom",
-                "family_name": "dom",
-                "date_of_birth": "21-10-2003",
-                "rank": "432",
-                "score": 2
+        "name": "jane",
+        "family_name": "doe",
+        "date_of_birth": "21-10-2003",
+        "rank": "432",
+        "score": 0
             },
             {
                 "id": "AZ12345",
-                "name": "sam",
-                "family_name": "test",
-                "date_of_birth": "24-10-2005",
-                "rank": "2000",
-                "score": 2
+        "name": "joueur",
+        "family_name": "test",
+        "date_of_birth": "26-03-2000",
+        "rank": "2000",
+        "score": 0
             },
             {
-                "id": "QR45632",
-                "name": "sam",
-                "family_name": "smith",
-                "date_of_birth": "20-10-2000",
-                "rank": "579",
-                "score": 0
+                 "id": "QR45632",
+        "name": "sam",
+        "family_name": "smith",
+        "date_of_birth": "01-01-2000",
+        "rank": "579",
+        "score": 0
             }
         ],
         "nb_rounds": 4
