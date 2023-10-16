@@ -20,11 +20,10 @@ def check_tournament_place():
 
 def check_date():
     date = input("Entrez une date au format JJ-MM-AAA: ")
-    if not re.match(r'[0-9]{2}-[0-9]{2}-[0-9]{4}', date):
+    if not re.match(r'[0-9]{2}-[0-9]{2}-[0-9]{4}$', date):
         print("Format invalide.")
         return check_date()
     return date
-
 
 
 def check_nb_players():
@@ -37,7 +36,10 @@ def check_nb_players():
 
 def check_nb_rounds():
     nb_rounds = input("Enter the number of rounds: ")
-    if not nb_rounds.isdigit() or int(nb_rounds) < 1:
+    if nb_rounds == '':
+        nb_rounds = 4
+        print("le nombre de round est initialisé a 4")
+    elif not nb_rounds.isdigit() or int(nb_rounds) < 1:
         print("Invalid number of rounds. Please enter a valid positive integer (minimum 1 round).")
         return check_nb_rounds()
     return int(nb_rounds)
@@ -66,6 +68,7 @@ def create_tournament_view():
     id = check_id()
 
     print(f"Tournament '{name}' created.")
-    tournament = Tournament(id, name, place, date, time_control, nb_players, desc, nb_rounds)
+    print(nb_rounds)
+    tournament = Tournament(id, name, place, date, time_control, nb_players, desc, 0, nb_rounds)
 
     return tournament

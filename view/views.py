@@ -1,6 +1,6 @@
-from ctrl.playermanager import new_player, PlayerManager, load_player_by_id
+from ctrl.playermanager import new_player, PlayerManager
 from ctrl.rapports import get_all_players_alphabetical, print_all_player_alpha, print_all_tournament, \
-    get_date_time_tournament
+    get_date_time_tournament, get_players_in_tournament_alphabetical, get_players_and_rounds_in_tournament
 from ctrl.tournament import TournamentManager, play_tournament
 
 player_manager = PlayerManager("players.json")
@@ -44,12 +44,10 @@ def menu():
         date_tournament()
     elif choice == "5":
         print_all_tournament()
+    elif choice == "6":
+        get_players_in_tournament_alphabetical()
     elif choice == "7":
-        print_all_tournament()
-    elif choice == "7":
-        print_all_tournament()
+        get_players_and_rounds_in_tournament()
 
     else:
         print("Invalid choice. Please choose again.")
-
-

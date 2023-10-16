@@ -1,6 +1,4 @@
-import json
 from models.rounds import Match
-from models.player import Player
 
 
 class RoundManager:
@@ -24,7 +22,6 @@ class RoundManager:
         match = Match(player1, player2)
         match_result = match.play_match(player1, player2, tournament_id, round_number)
         self.rounds.append(match_result)
-        self.save_round()
         return match_result
 
     def get_match_result(self, tournament_id, round_number):
@@ -33,17 +30,7 @@ class RoundManager:
                 return result
         return None
 
-    def save_round(self):
-        with open(self.filename, 'a') as file:
-            json.dump(self.rounds, file, indent=4)
-
-
-player1 = Player("AZ12345","shmuel","bitan",24-10-2005,2000,0)
-player2 = Player("AZ12445","shmuel","bitan",24-10-2005,2000)
-id = 1
-r = 2
 
 def play_round_get_result(player1, player2, id_tournament, round_number):
     current_round_gestion = RoundManager("rounds.json")
     current_round_gestion.play_match(player1, player2, id_tournament, round_number)
-

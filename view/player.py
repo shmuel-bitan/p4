@@ -4,7 +4,7 @@ from models.player import Player
 
 def check_date_of_birth():
     dob = input("rentrez une date de naissance dans le format JJ-MM-AAAA ")
-    if not re.match(r'[0-9]{2}-[0-9]{2}-[0-9]{4}', dob):
+    if not re.match(r'[0-9]{2}-[0-9]{2}-[0-9]{4}$', dob):
         print("une daste respectant le format JJ-MM-AAAA ")
         return check_date_of_birth()
     return dob
@@ -20,8 +20,8 @@ def check_input():
 
 def check_id():
     id_input = input(" rentrez l identifiant national d echec du joueur ")
-    if not re.match(r'[A-Z]{2}[0-9]{5}', id_input):
-        check_id()
+    if not re.match(r'[A-Z]{2}[0-9]{5}$', id_input):
+        return check_id()
     return id_input
 
 
@@ -52,4 +52,3 @@ def create_player_view():
     print(f"Joueur {first_name} {name} créé.")
     player = Player(id, name, first_name, date_of_birth, rank)
     return player
-check_id()

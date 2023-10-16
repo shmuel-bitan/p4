@@ -2,7 +2,7 @@ import json
 
 
 class Player:
-    def __init__(self, id, name, family_name, date_of_birth, rank,score=0):
+    def __init__(self, id, name, family_name, date_of_birth, rank, score=0):
         self.id = id
         self.name = name
         self.family_name = family_name

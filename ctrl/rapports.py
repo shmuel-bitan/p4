@@ -16,20 +16,20 @@ def load_players_from_json(filename):
 def get_date_time_tournament():
     tournament_id = input("rentrez l id du tournoi ")
     try:
+
         with open("tournaments.json", 'r') as file:
             tournaments = json.load(file)
 
         for tournament in tournaments:
             if tournament["id"] == tournament_id:
+                print("le torunoi", tournament["name"], "a commence ", tournament["date"], "et a fini",
+                      tournament["time_control"])
                 return {
                     "name": tournament["name"],
                     "date": tournament["date"],
                     "time_control": tournament["time_control"]
                 }
-            print("le torunoi", tournament["name"], "a commence ", tournament["date"], "et a fini",
-                  tournament["time_control"])
 
-        # Tournament not found
         return None
     except FileNotFoundError:
         print("Tournaments file not found.")
@@ -49,7 +49,7 @@ def load_tournaments_from_json(filename):
 
 def get_all_players_alphabetical(players_data):
     """recuperer les joueurs et les triers par ordre alphabetique """
-    sorted_players = sorted(players_data, key=lambda player: player['name'])
+    sorted_players = sorted(players_data, key=lambda player: player.get("name", "").lower())
     return sorted_players
 
 
@@ -63,19 +63,20 @@ def print_all_player_alpha():
         print(p)
 
 
-def get_players_in_tournament_alphabetical(
-        tournament_name, tournaments_data, players_data):
-    """recup tout les joueurs du tournoi par ordre alphabetique"""
-    for tournament in tournaments_data:
-        if tournament['name'] == tournament_name:
-            player_ids = tournament['players']
-            players_in_tournament = [
-                player for player in players_data if player['id'] in player_ids]
-            sorted_players = sorted(
-                players_in_tournament,
-                key=lambda player: player['name'])
-            return sorted_players
-    return []
+def get_players_in_tournament_alphabetical():
+    tournament_id = input("rentrez l id du tournoi ")
+    try:
+        with open("tournaments.json", 'r') as file:
+            tournaments = json.load(file)
+
+        for tournament in tournaments:
+            if tournament["id"] == tournament_id:
+                players_data = tournament['players']
+                sorted_players = sorted(players_data, key=lambda player: player.get("name", "").lower())
+                print("les joueurs", sorted_players)
+    except FileNotFoundError:
+        print("Tournaments file not found.")
+        return None
 
 
 def get_all_tournaments(tournaments_data):
@@ -92,17 +93,12 @@ def print_all_tournament():
         print(tournament)
 
 
-def get_players_and_rounds_in_tournament(tournament_name):
-    tournaments_data = load_tournaments_from_json("tournaments.json")
+def get_players_and_rounds_in_tournament():
+    tournament_name = input("rentrez l id du tournoi")
+    tournaments_data = load_tournaments_from_json("rounds.json")
     """"recup tout les rounds et joueurs dun tournoi"""
-    for tournament in tournaments_data:
-        if tournament['id'] == tournament_name:
-            return {
-                'players': tournament['players']
-            }
-        print(tournament['players'])
+    for round in tournaments_data:
+        if round["Tournament_Id"] == tournament_name:
+            print(round)
+        print("les rounds", round)
     return {}
-
-
-get_players_and_rounds_in_tournament(2)
-# Example usage (You can call these functions as needed in your application)

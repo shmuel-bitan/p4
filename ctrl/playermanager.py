@@ -18,9 +18,8 @@ def new_player():
     # Create and add players
     player = create_player_view()
     player_manager.add_player(player)
-    print(player_manager.players)
     print(player)
-    player_manager.save_player()
+    player_manager.save_player(player)
 
 
 class PlayerManager:
@@ -31,46 +30,28 @@ class PlayerManager:
     def add_player(self, player):
         self.players.append(player)
 
-    def save_player(self):
-        player_data = [
-            {
-                "id": player.id,
-                "name": player.name,
-                "family_name": player.family_name,
-                "date_of_birth": player.date_of_birth,
-                "rank": player.rank,
-                "score": player.score
-            }
-
-        ]
-            for player in self.players
-
-
+    def save_player(self, player):
+        player_data = {
+            "id": player.id,
+            "name": player.name,
+            "family_name": player.family_name,
+            "date_of_birth": player.date_of_birth,
+            "rank": player.rank,
+            "score": player.score
+        }
         self.save_to_json(player_data)
 
     def save_to_json(self, data):
         filename = "players.json"
-        existing_data =0
-        print(data)
         try:
-            existing_data= self.load_players_from_json()
-            print(existing_data)
+            existing_data = self.load_players_from_json()
         except FileNotFoundError:
             existing_data = []
 
         existing_data.append(data)
-        print(existing_data)
 
         with open(filename, 'w') as file:
             json.dump(existing_data, file, indent=4, separators=(',', ': '))
-
-    """def modify_player_score(self, player_id, new_score):
-
-        # Find the player by ID and update their score
-        for i, player in enumerate(self.players):
-            if player["id"] == player_id:
-                self.players[i]["score"] = new_score
-"""
 
     def modify_player_score(self, player_id, new_score):
 

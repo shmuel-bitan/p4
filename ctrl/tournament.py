@@ -1,6 +1,5 @@
 import random
 import json
-from models.rounds import Match
 from ctrl.rounds import RoundManager
 from ctrl.playermanager import PlayerManager, load_player_by_id
 from models.tournament import Tournament
@@ -10,7 +9,7 @@ from view.tournament import create_tournament_view
 
 def play_tournament():
     player_added = 0
-    current_round = 0
+    current_round = 1
     player_manager = PlayerManager('players.json')
     current_tournament = TournamentManager(player_manager)
     tournament_to_add = create_tournament_view()
@@ -27,11 +26,11 @@ def play_tournament():
     print(player_manager.players)
     tournament_to_add.set_players(player_manager.players)
     current_tournament.add_tournament(tournament_to_add)
-    while tournament_round_number > current_round:
-        print("on joue le round numero", current_round+1)
+    while current_round < tournament_round_number + 1:
+        print("on joue le round numero", current_round)
         current_tournament.play_round(tournament_id, current_round)
         current_round += 1
-    current_tournament.save_tournament()
+    current_tournament.save_tournament(tournament_to_add)
 
 
 class TournamentManager:
@@ -39,7 +38,7 @@ class TournamentManager:
         self.players = player_manager
         self.tournaments = []
 
-    def round_to_play(self, tournament_id, nb_rounds):
+    """def round_to_play(self, tournament_id, nb_rounds):
         round_number = 0
         while round_number < nb_rounds:
             round_number += 1
@@ -48,29 +47,53 @@ class TournamentManager:
                 self.play_round(tournament_id, round_number)
             else:
                 self.play_round(tournament_id, round_number)
+    """
 
     def add_tournament(self, tournament):
 
         self.tournaments.append(tournament)
 
-    def save_tournament(self):
-        tournament_data = [
-            {
-                "id": tournament.id,
-                "name": tournament.name,
-                "place": tournament.place,
-                "date": tournament.date,
-                "time_control": tournament.time_control,
-                "nb_players": tournament.nb_players,
-                "nb_rounds": tournament.nb_rounds,
-                "desc": tournament.desc,
-                "players": tournament.players
-            }
-            for tournament in self.tournaments
-        ]
+    def load_tournament_from_json(self):
+        try:
+            with open("tournaments.json", 'r') as file:
+                existing_player_data = json.load(file)
+                # Create player objects from loaded data
+                self.tournaments = [
+                    Tournament(data["id"], data["name"], data["place"], data["date"], data["time_control"],
+                               data["nb_players"], data["desc"], data["players"], data["nb_rounds"])
+                    for data in existing_player_data
+                ]
+                return existing_player_data
+        except FileNotFoundError:
+            print("File tournaments.json not found. No players loaded.")
+            return []
 
-        with open("tournaments.json", 'a') as file:
-            json.dump(tournament_data, file, indent=4)
+    def save_tournament(self, tournament):
+        tournament_data = {
+            "id": tournament.id,
+            "name": tournament.name,
+            "place": tournament.place,
+            "date": tournament.date,
+            "time_control": tournament.time_control,
+            "nb_players": tournament.nb_players,
+            "desc": tournament.desc,
+            "players": tournament.players,
+            "nb_rounds": tournament.nb_rounds
+        }
+        self.save_to_json(tournament_data)
+
+    def save_to_json(self, data):
+        filename = "tournaments.json"
+        print(data)
+        try:
+            existing_data = self.load_tournament_from_json()
+        except FileNotFoundError:
+            existing_data = []
+
+        existing_data.append(data)
+
+        with open(filename, 'w') as file:
+            json.dump(existing_data, file, indent=4, separators=(',', ': '))
 
     def get_tournaments_by_id(self, id):
         for tournament in self.tournaments:
@@ -87,8 +110,14 @@ class TournamentManager:
 
         return pairs
 
-    def organize_pairs_by_score(self):
+    """def organize_pairs_by_score(self):
         sorted_players = sorted(self.players.players, key=lambda player: player['score'])
+        pairs = [(sorted_players[i], sorted_players[i + 1]) for i in range(0, len(sorted_players), 2)]
+        return pairs
+"""
+
+    def organize_pairs_by_score(self):
+        sorted_players = sorted(self.players.players, key=lambda player: player.get("score", 0), reverse=True)
         pairs = [(sorted_players[i], sorted_players[i + 1]) for i in range(0, len(sorted_players), 2)]
         return pairs
 
