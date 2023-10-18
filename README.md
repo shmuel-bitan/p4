@@ -21,7 +21,7 @@ tournoi d echec en poo
 
     python<version>main.py
 
-## 3. Execution du script
+## 3. Generation du rapport html de flake8
 
     flake8 --format=html --htmldir=flake-report
 
