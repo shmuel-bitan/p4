@@ -21,6 +21,10 @@ tournoi d echec en poo
 
     python<version>main.py
 
+## 3. Execution du script
+
+    flake8 --format=html --htmldir=flake-report
+
 devant vous sera alors le menu pricipal duquel il sera possible de faire differentes actions et de generer les differents rapports 
 
     

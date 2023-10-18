@@ -1,6 +1,7 @@
 import time
 from models.player import Player
 import json
+from view.rounds import get_output
 
 
 class Match:
@@ -15,7 +16,7 @@ class Match:
     def play_match(self, player1, player2, tournament_id, round_number):
         self.match_start = time.strftime("%Y-%m-%d %H:%M:%S")
         print(f"{player1['name']} vs. {player2['name']}")
-        outcome = input("Enter the outcome (1 for Player 1 win, 2 for Player 2 win, 0 for draw): ")
+        outcome = get_output()
 
         if outcome == "1":
             player1['score'] += 1
